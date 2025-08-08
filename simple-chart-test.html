@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .chart { width: 400px; height: 400px; margin: 20px auto; }
+        .status { background: #f0f8ff; padding: 10px; margin: 10px 0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Simple Chart Test</h1>
+    <div id="status" class="status">Loading...</div>
+    
+    <div class="chart">
+        <canvas id="simpleChart"></canvas>
+    </div>
+    
+    <script>
+        document.getElementById('status').innerHTML = 'Chart.js loaded: ' + (typeof Chart !== 'undefined');
+        
+        setTimeout(() => {
+            const ctx = document.getElementById('simpleChart');
+            if (ctx && typeof Chart !== 'undefined') {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Completed', 'Pending', 'Overdue'],
+                        datasets: [{
+                            data: [4, 2, 1],
+                            backgroundColor: ['#28a745', '#ffc107', '#dc3545']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+                document.getElementById('status').innerHTML = '✅ Chart created successfully!';
+            } else {
+                document.getElementById('status').innerHTML = '❌ Chart creation failed';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

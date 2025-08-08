@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Pro - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-clipboard-list"></i>
+                <span>ToDo Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="cover.html" class="nav-link home-link" title="Back to Landing Page"><i class="fas fa-arrow-left"></i> Home</a></li>
+                <li><a href="dashboard.html" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fas fa-tasks"></i> Tasks</a></li>
+                <li><a href="analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="ai-assistant.html" class="nav-link"><i class="fas fa-robot"></i> AI Assistant</a></li>
+                <li><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-ellipsis-v"></i> More</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cover.html"><i class="fas fa-info-circle"></i> Project Info</a></li>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Landing Page</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Exit App</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="welcome-section">
+                    <h1><i class="fas fa-home"></i> Welcome back, Vanshika!</h1>
+                    <p class="header-subtitle">Here's what's happening with your productivity journey today</p>
+                </div>
+                <div class="header-actions">
+                    <div class="current-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="currentDate">August 4, 2025</span>
+                    </div>
+                    <div class="productivity-badge">
+                        <i class="fas fa-fire"></i>
+                        <span>Productivity Streak: <strong id="streakDays">5</strong> days</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-grid">
+            <!-- Quick Stats -->
+            <div class="dashboard-card stats-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-pie"></i> Productivity Overview</h3>
+                    <p class="card-description">Your task completion metrics at a glance</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item total-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalTasks">0</div>
+                            <div class="stat-label">Total Tasks</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up"></i> +2 this week
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-item pending-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="pendingTasks">0</div>
+                            <div class="stat-label">Pending</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-minus"></i> On track
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-item completed-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="completedTasks">0</div>
+                            <div class="stat-label">Completed</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up"></i> +5 today
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-item productivity-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="productivityScore">0%</div>
+                            <div class="stat-label">Productivity</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up"></i> Excellent!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Add Task -->
+            <div class="dashboard-card quick-add-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-plus-circle"></i> Create New Task</h3>
+                    <p class="card-description">Quickly add a new task to stay organized</p>
+                </div>
+                <form id="quickAddForm" class="quick-add-form">
+                    <div class="input-group">
+                        <input type="text" id="quickTaskInput" placeholder="What needs to be done?" class="modern-input">
+                        <button type="submit" id="quickAddBtn" class="btn-gradient">
+                            <i class="fas fa-plus"></i> Add Task
+                        </button>
+                    </div>
+                    <div class="quick-options">
+                        <div class="option-group">
+                            <label class="option-label">Priority:</label>
+                            <select id="taskPriority" class="modern-select">
+                                <option value="medium">📋 Medium</option>
+                                <option value="high">🔥 High</option>
+                                <option value="low">📝 Low</option>
+                                <option value="urgent">⚡ Urgent</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label class="option-label">Category:</label>
+                            <select id="taskCategory" class="modern-select">
+                                <option value="general">📋 General</option>
+                                <option value="work">💼 Work</option>
+                                <option value="personal">👤 Personal</option>
+                                <option value="health">💪 Health</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="quick-actions">
+                    <button class="action-btn secondary-btn" onclick="window.location.href='tasks.html'">
+                        <i class="fas fa-list"></i> View All Tasks
+                    </button>
+                    <button class="action-btn tertiary-btn" onclick="window.location.href='ai-assistant.html'">
+                        <i class="fas fa-robot"></i> Ask AI for Help
+                    </button>
+                </div>
+            </div>
+
+            <!-- Today's Tasks -->
+            <div class="dashboard-card today-tasks-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-day"></i> Today's Focus</h3>
+                    <p class="card-description">Your most important tasks for today</p>
+                </div>
+                <div id="todayTasksList" class="tasks-preview">
+                    <!-- Tasks will be loaded here -->
+                    <div class="empty-state" style="display: none;">
+                        <div class="empty-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>All caught up!</h4>
+                        <p>You've completed all your tasks for today. Great work!</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="tasks.html?filter=today" class="view-all-link gradient-link">
+                        <span>View all today's tasks</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card activity-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                    <p class="card-description">Your latest productivity milestones</p>
+                </div>
+                <div id="recentActivity" class="activity-list">
+                    <!-- Recent activity will be loaded here -->
+                    <div class="activity-item">
+                        <div class="activity-icon completed">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <span class="activity-text">Completed "Play Uno"</span>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="dashboard-card quick-links-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-rocket"></i> Quick Actions</h3>
+                    <p class="card-description">Navigate to key features instantly</p>
+                </div>
+                <div class="quick-links-grid">
+                    <a href="tasks.html" class="quick-link manage-tasks">
+                        <div class="link-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="link-content">
+                            <span class="link-title">Manage Tasks</span>
+                            <small>Organize & prioritize</small>
+                        </div>
+                        <div class="link-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a href="analytics.html" class="quick-link view-analytics">
+                        <div class="link-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="link-content">
+                            <span class="link-title">View Analytics</span>
+                            <small>Track your progress</small>
+                        </div>
+                        <div class="link-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a href="ai-assistant.html" class="quick-link ai-assistant">
+                        <div class="link-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="link-content">
+                            <span class="link-title">AI Assistant</span>
+                            <small>Get smart suggestions</small>
+                        </div>
+                        <div class="link-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a href="settings.html" class="quick-link settings">
+                        <div class="link-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="link-content">
+                            <span class="link-title">Settings</span>
+                            <small>Customize experience</small>
+                        </div>
+                        <div class="link-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Productivity Insights -->
+            <div class="dashboard-card insights-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-lightbulb"></i> Smart Insights</h3>
+                    <p class="card-description">AI-powered recommendations for better productivity</p>
+                </div>
+                <div id="dailyInsights" class="insights-list">
+                    <div class="insight-item achievement">
+                        <div class="insight-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="insight-content">
+                            <span class="insight-text">Great job! You're on track with your daily goals.</span>
+                            <span class="insight-badge">Achievement</span>
+                        </div>
+                    </div>
+                    <div class="insight-item reminder">
+                        <div class="insight-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="insight-content">
+                            <span class="insight-text">You have 3 tasks due today. Stay focused!</span>
+                            <span class="insight-badge">Reminder</span>
+                        </div>
+                    </div>
+                    <div class="insight-item tip">
+                        <div class="insight-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="insight-content">
+                            <span class="insight-text">Consider time-blocking your schedule for better focus.</span>
+                            <span class="insight-badge">AI Tip</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="insights-footer">
+                    <a href="ai-assistant.html" class="insights-link">
+                        <span>Get more AI insights</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Navigation Buttons -->
+    <div class="floating-nav">
+        <button class="floating-btn back-btn" onclick="goHome()" title="Back to Home">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="floating-btn info-btn" onclick="showProjectInfo()" title="Project Info">
+            <i class="fas fa-info-circle"></i>
+        </button>
+    </div>
+
+    <!-- Enhanced Navigation Script -->
+    <script>
+        // Navigation functions
+        function goHome() {
+            if (confirm('🏠 Go back to the landing page?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function showProjectInfo() {
+            window.location.href = 'cover.html';
+        }
+
+        function confirmLogout() {
+            if (confirm('🚪 Are you sure you want to exit the application? You will return to the landing page.')) {
+                // Clear any session data if needed
+                localStorage.setItem('lastVisited', 'dashboard');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Enhanced dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.nav-dropdown');
+            const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+            // Add keyboard navigation for accessibility
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdown.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Pro - AI Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-clipboard-list"></i>
+                <span>ToDo Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="cover.html" class="nav-link home-link" title="Back to Landing Page"><i class="fas fa-arrow-left"></i> Home</a></li>
+                <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tasks.html" class="nav-link"><i class="fas fa-tasks"></i> Tasks</a></li>
+                <li><a href="analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="ai-assistant.html" class="nav-link active"><i class="fas fa-robot"></i> AI Assistant</a></li>
+                <li><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-ellipsis-v"></i> More</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cover.html"><i class="fas fa-info-circle"></i> Project Info</a></li>
+                        <li><a href="cover.html"><i class="fas fa-home"></i> Landing Page</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Exit App</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1><i class="fas fa-robot"></i> AI Productivity Assistant</h1>
+            <p class="readable-text">Get intelligent insights and personalized recommendations to boost your productivity</p>
+        </header>
+
+        <!-- AI Features Grid -->
+        <div class="ai-features-grid">
+            <!-- Quick AI Actions -->
+            <div class="ai-feature-card quick-actions-card">
+                <h3><i class="fas fa-bolt"></i> Quick AI Actions</h3>
+                <p class="card-description">Get instant AI-powered suggestions for your workflow</p>
+                <div class="quick-actions-grid">
+                    <button class="quick-action-btn" data-action="optimize">
+                        <div class="action-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Optimize My Schedule</span>
+                            <small>AI-powered schedule optimization</small>
+                        </div>
+                    </button>
+                    <button class="quick-action-btn" data-action="priorities">
+                        <div class="action-icon">
+                            <i class="fas fa-sort-amount-up"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Suggest Priorities</span>
+                            <small>Smart priority recommendations</small>
+                        </div>
+                    </button>
+                    <button class="quick-action-btn" data-action="estimates">
+                        <div class="action-icon">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Estimate Task Times</span>
+                            <small>Intelligent time predictions</small>
+                        </div>
+                    </button>
+                    <button class="quick-action-btn" data-action="tips">
+                        <div class="action-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Productivity Tips</span>
+                            <small>Personalized advice</small>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI Chat Interface -->
+            <div class="ai-feature-card ai-chat-card">
+                <h3><i class="fas fa-comments"></i> Chat with AI Assistant</h3>
+                <p class="card-description">Ask me anything about productivity, task management, or workflow optimization</p>
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="chat-message ai-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm your AI productivity assistant. I can help you optimize your workflow, suggest better task organization, and provide personalized productivity tips. What would you like to improve today? 🚀</p>
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                    <form id="chatForm" class="chat-input-form">
+                        <textarea id="chatInput" placeholder="Ask me about task management, productivity tips, or workflow optimization..." rows="1"></textarea>
+                        <button type="submit" id="sendMessage" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights and Analytics -->
+        <div class="ai-features-grid">
+            <!-- Smart Suggestions -->
+            <div class="ai-feature-card smart-suggestions-card">
+                <h3><i class="fas fa-lightbulb"></i> Smart Suggestions</h3>
+                <p class="card-description">AI-powered recommendations based on your productivity patterns</p>
+                <div id="aiSuggestions" class="suggestions-list">
+                    <div class="suggestion-item">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="suggestion-content">
+                            <h4>Break down large tasks</h4>
+                            <p>Split complex tasks into smaller, manageable subtasks for better completion rates.</p>
+                            <div class="suggestion-meta">
+                                <span class="confidence-score">
+                                    <i class="fas fa-star"></i> 92% confidence
+                                </span>
+                            </div>
+                        </div>
+                        <button class="apply-suggestion gradient-btn" data-suggestion="break-down">
+                            <i class="fas fa-check"></i> Apply
+                        </button>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="suggestion-content">
+                            <h4>Optimize time blocks</h4>
+                            <p>Allocate specific time slots for your high-priority tasks based on your peak productivity hours.</p>
+                            <div class="suggestion-meta">
+                                <span class="confidence-score">
+                                    <i class="fas fa-star"></i> 88% confidence
+                                </span>
+                            </div>
+                        </div>
+                        <button class="apply-suggestion gradient-btn" data-suggestion="time-blocks">
+                            <i class="fas fa-check"></i> Apply
+                        </button>
+                    </div>
+                    <div class="suggestion-item">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="suggestion-content">
+                            <h4>Improve categorization</h4>
+                            <p>Organize similar tasks under smart categories for streamlined workflow management.</p>
+                            <div class="suggestion-meta">
+                                <span class="confidence-score">
+                                    <i class="fas fa-star"></i> 85% confidence
+                                </span>
+                            </div>
+                        </div>
+                        <button class="apply-suggestion gradient-btn" data-suggestion="categories">
+                            <i class="fas fa-check"></i> Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Insights Dashboard -->
+            <div class="ai-feature-card ai-insights-card">
+                <h3><i class="fas fa-chart-line"></i> AI-Powered Insights</h3>
+                <p class="card-description">Deep analysis of your productivity patterns and behavior</p>
+                <div class="insights-grid">
+                    <div class="insight-item productivity-score">
+                        <div class="insight-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h4>Productivity Score</h4>
+                            <div class="score-display">
+                                <span class="score-number">87</span>
+                                <span class="score-suffix">/100</span>
+                            </div>
+                            <p class="score-trend">
+                                <i class="fas fa-arrow-up text-success"></i> +5% this week
+                            </p>
+                        </div>
+                    </div>
+                    <div class="insight-item peak-hours">
+                        <div class="insight-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h4>Peak Productivity</h4>
+                            <div class="peak-time">9:00 AM - 11:00 AM</div>
+                            <p>Your most productive hours based on task completion patterns</p>
+                        </div>
+                    </div>
+                    <div class="insight-item completion-rate">
+                        <div class="insight-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h4>Completion Rate</h4>
+                            <div class="completion-percentage">
+                                <div class="percentage-circle">
+                                    <span>78%</span>
+                                </div>
+                            </div>
+                            <p>Tasks completed on time this month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Learning and Automation -->
+        <div class="ai-features-grid">
+            <!-- Automated Suggestions -->
+            <div class="ai-feature-card automation-card">
+                <h3><i class="fas fa-cogs"></i> Smart Automation</h3>
+                <p class="card-description">Set up intelligent automation for repetitive tasks and workflows</p>
+                <div class="automation-list">
+                    <div class="automation-item">
+                        <div class="automation-toggle">
+                            <input type="checkbox" id="auto-prioritize" class="toggle-input" checked>
+                            <label for="auto-prioritize" class="toggle-label">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="automation-content">
+                            <h4>Auto-Prioritize Tasks</h4>
+                            <p>Automatically assign priority levels based on deadlines and importance</p>
+                        </div>
+                    </div>
+                    <div class="automation-item">
+                        <div class="automation-toggle">
+                            <input type="checkbox" id="smart-scheduling" class="toggle-input">
+                            <label for="smart-scheduling" class="toggle-label">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="automation-content">
+                            <h4>Smart Scheduling</h4>
+                            <p>Automatically schedule tasks during your peak productivity hours</p>
+                        </div>
+                    </div>
+                    <div class="automation-item">
+                        <div class="automation-toggle">
+                            <input type="checkbox" id="reminder-optimization" class="toggle-input" checked>
+                            <label for="reminder-optimization" class="toggle-label">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="automation-content">
+                            <h4>Intelligent Reminders</h4>
+                            <p>Send reminders at optimal times based on your response patterns</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Learning Panel -->
+            <div class="ai-feature-card learning-card">
+                <h3><i class="fas fa-brain"></i> AI Learning Status</h3>
+                <p class="card-description">Your AI assistant gets smarter by learning from your habits and preferences</p>
+                <div class="learning-progress">
+                    <div class="learning-metric">
+                        <div class="metric-header">
+                            <span class="metric-label">Pattern Recognition</span>
+                            <span class="metric-value">Advanced</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="learning-metric">
+                        <div class="metric-header">
+                            <span class="metric-label">Preference Learning</span>
+                            <span class="metric-value">Developing</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="learning-metric">
+                        <div class="metric-header">
+                            <span class="metric-label">Personalization</span>
+                            <span class="metric-value">Expert</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="learning-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1,247</span>
+                        <span class="stat-label">Tasks Analyzed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">89</span>
+                        <span class="stat-label">Patterns Identified</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Suggestions Applied</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Navigation Buttons -->
+    <div class="floating-nav">
+        <button class="floating-btn back-btn" onclick="goHome()" title="Back to Home">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="floating-btn info-btn" onclick="showProjectInfo()" title="Project Info">
+            <i class="fas fa-info-circle"></i>
+        </button>
+    </div>
+
+    <script>
+        function goHome() { if (confirm('🏠 Go back to the landing page?')) window.location.href = 'index.html'; }
+        function showProjectInfo() { window.location.href = 'cover.html'; }
+        function confirmLogout() { if (confirm('🚪 Exit application?')) { localStorage.setItem('lastVisited', 'ai-assistant'); window.location.href = 'index.html'; }}
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.nav-dropdown');
+            if (dropdown) {
+                dropdown.querySelector('.dropdown-toggle').addEventListener('click', function(e) { e.preventDefault(); dropdown.classList.toggle('active'); });
+                document.addEventListener('click', function(e) { if (!dropdown.contains(e.target)) dropdown.classList.remove('active'); });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape') dropdown.classList.remove('active'); });
+            }
+        });
+    </script>
+
+    <script src="ai-assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Pro - Task Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-clipboard-list"></i>
+                <span>ToDo Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="cover.html" class="nav-link home-link" title="Back to Landing Page"><i class="fas fa-arrow-left"></i> Home</a></li>
+                <li><a href="dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tasks.html" class="nav-link active"><i class="fas fa-tasks"></i> Tasks</a></li>
+                <li><a href="analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="ai-assistant.html" class="nav-link"><i class="fas fa-robot"></i> AI Assistant</a></li>
+                <li><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-ellipsis-v"></i> More</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cover.html"><i class="fas fa-info-circle"></i> Project Info</a></li>
+                        <li><a href="cover.html"><i class="fas fa-home"></i> Landing Page</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Exit App</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1><i class="fas fa-tasks"></i> Task Management</h1>
+            <p>Organize and manage your tasks efficiently</p>
+        </header>
+
+        <!-- Task Input Section -->
+        <div class="task-input-section">
+            <form id="taskForm" class="input-container">
+                <input type="text" id="taskInput" placeholder="What needs to be done?" maxlength="100">
+                <div class="task-details-row">
+                    <input type="date" id="taskDate">
+                    <input type="time" id="taskTime">
+                    <select id="taskPriority">
+                        <option value="low">🟢 Low Priority</option>
+                        <option value="medium" selected>🟡 Medium Priority</option>
+                        <option value="high">🔴 High Priority</option>
+                        <option value="urgent">⚡ Urgent</option>
+                    </select>
+                    <select id="taskCategory">
+                        <option value="general">📋 General</option>
+                        <option value="work">💼 Work</option>
+                        <option value="personal">👤 Personal</option>
+                        <option value="health">💪 Health</option>
+                        <option value="learning">📚 Learning</option>
+                        <option value="shopping">🛒 Shopping</option>
+                        <option value="finance">💰 Finance</option>
+                    </select>
+                </div>
+                <button type="submit" id="addTaskBtn" class="btn-primary add-task-btn">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </form>
+        </div>
+
+        <!-- Task Controls -->
+        <div class="task-controls">
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Tasks</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="overdue">Overdue</button>
+                    <button class="filter-btn" data-filter="today">Today</button>
+                </div>
+            </div>
+
+            <div class="search-sort-section">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search tasks...">
+                </div>
+                <div class="sort-container">
+                    <select id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="priority">Priority</option>
+                        <option value="deadline">Deadline</option>
+                        <option value="alphabetical">A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list-container">
+            <div class="task-stats-bar">
+                <div class="stats-info">
+                    <span id="totalTasks">0</span> total • 
+                    <span id="pendingTasks">0</span> pending • 
+                    <span id="completedTasks">0</span> completed
+                </div>
+                <div class="productivity-score">
+                    Productivity: <span id="productivityScore">0%</span>
+                </div>
+            </div>
+
+            <div class="tasks-grid">
+                <ul id="todoList" class="todo-list"></ul>
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-tasks"></i>
+                    <h3>No tasks found!</h3>
+                    <p>Add your first task above to get started.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-edit"></i> Edit Task</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="editTaskInput" placeholder="Task description" maxlength="100">
+                    <div class="edit-details-grid">
+                        <div class="input-group">
+                            <label>Due Date:</label>
+                            <input type="date" id="editTaskDate">
+                        </div>
+                        <div class="input-group">
+                            <label>Due Time:</label>
+                            <input type="time" id="editTaskTime">
+                        </div>
+                        <div class="input-group">
+                            <label>Priority:</label>
+                            <select id="editTaskPriority">
+                                <option value="low">🟢 Low Priority</option>
+                                <option value="medium">🟡 Medium Priority</option>
+                                <option value="high">🔴 High Priority</option>
+                                <option value="urgent">⚡ Urgent</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Category:</label>
+                            <select id="editTaskCategory">
+                                <option value="general">📋 General</option>
+                                <option value="work">💼 Work</option>
+                                <option value="personal">👤 Personal</option>
+                                <option value="health">💪 Health</option>
+                                <option value="learning">📚 Learning</option>
+                                <option value="shopping">🛒 Shopping</option>
+                                <option value="finance">💰 Finance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="subtask-section">
+                        <label>Subtasks:</label>
+                        <div id="editSubtasksList"></div>
+                        <div class="add-subtask">
+                            <input type="text" id="newSubtaskInput" placeholder="Add subtask...">
+                            <button type="button" id="addSubtaskBtn"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveEditBtn" class="btn-success">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <button id="cancelEditBtn" class="btn-secondary">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Navigation Buttons -->
+    <div class="floating-nav">
+        <button class="floating-btn back-btn" onclick="goHome()" title="Back to Home">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="floating-btn info-btn" onclick="showProjectInfo()" title="Project Info">
+            <i class="fas fa-info-circle"></i>
+        </button>
+    </div>
+
+    <!-- Enhanced Navigation Script -->
+    <script>
+        // Navigation functions
+        function goHome() {
+            if (confirm('🏠 Go back to the landing page?')) {
+                window.location.href = 'cover.html';
+            }
+        }
+
+        function showProjectInfo() {
+            window.location.href = 'cover.html';
+        }
+
+        function confirmLogout() {
+            if (confirm('🚪 Are you sure you want to exit the application? You will return to the landing page.')) {
+                localStorage.setItem('lastVisited', 'tasks');
+                window.location.href = 'cover.html';
+            }
+        }
+
+        // Enhanced dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.nav-dropdown');
+            if (dropdown) {
+                const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="tasks.js"></script>
+</body>
+</html>

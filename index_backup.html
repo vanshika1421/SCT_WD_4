@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ToDo Pro - Professional task management system with AI-powered insights, analytics, and responsive design for maximum productivity.">
+    <meta name="keywords" content="task management, productivity, todo app, AI assistant, analytics, professional">
+    <meta name="author" content="SkillCraft Technology">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ToDo Pro - Professional Task Management">
+    <meta property="og:description" content="Boost your productivity with AI-powered insights and professional task management.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+    
+    <title>ToDo Pro - Professional Task Management | SkillCraft Technology</title>
+    
+    <!-- Redirect to cover.html -->
+    <script>
+        window.location.href = 'cover.html';
+    </script>
+    
+    <!-- Fallback meta redirect -->
+    <meta http-equiv="refresh" content="0; url=cover.html">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fallback content in case JavaScript is disabled -->
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h1>Redirecting to ToDo Pro...</h1>
+        <p>If you are not redirected automatically, <a href="cover.html">click here</a>.</p>
+    </div>
+<    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen" aria-hidden="true">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h2>Loading ToDo Pro...</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="main-header" role="banner">
+        <nav class="header-nav" aria-label="Main navigation">
+            <div class="nav-brand">
+                <i class="fas fa-clipboard-list brand-icon"></i>
+                <span class="brand-text">ToDo Pro</span>
+                <span class="brand-badge">v2.0</span>
+            </div>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Switch theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notifications-btn" aria-label="View notifications" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+        <div class="landing-container">
+            <div class="landing-content">
+                <!-- Hero Section -->
+                <section class="hero-section" aria-labelledby="hero-title">
+                    <div class="logo-section">
+                        <div class="logo-animation">
+                            <i class="fas fa-clipboard-list landing-logo" aria-hidden="true"></i>
+                            <div class="logo-particles" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <h1 id="hero-title" class="fade-in">ToDo Pro</h1>
+                        <p class="hero-subtitle fade-in-delay">Professional Task Management System</p>
+                        <div class="tagline fade-in-delay-2">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <span>Boost your productivity with AI-powered insights</span>
+                        </div>
+                        
+                        <!-- Quick Stats -->
+                        <div class="quick-stats fade-in-delay-2">
+                            <div class="stat-badge">
+                                <i class="fas fa-users"></i>
+                                <span>1M+ Users</span>
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5 Rating</span>
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Enterprise Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="landing-actions fade-in-delay-3">
+                        <a href="dashboard.html" class="btn-primary pulse-animation" role="button">
+                            <i class="fas fa-rocket" aria-hidden="true"></i> 
+                            <span>Launch Dashboard</span>
+                            <small>Start managing tasks now</small>
+                        </a>
+                        <a href="cover.html" class="btn-secondary" role="button">
+                            <i class="fas fa-info-circle" aria-hidden="true"></i> 
+                            <span>Project Details</span>
+                        </a>
+                        <button class="btn-demo" onclick="startDemo()" aria-label="Start interactive demo">
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            <span>Interactive Demo</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="features-section fade-in-delay-4" aria-labelledby="features-title">
+                    <h2 id="features-title" class="section-title">Powerful Features</h2>
+                    <div class="features-preview">
+                        <article class="feature-item" data-feature="tasks" tabindex="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-tasks" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Smart Task Management</h3>
+                                <p>Organize, prioritize, and track your tasks with intelligent categorization and deadline alerts.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Drag & Drop</span>
+                                    <span class="tag">Auto-Sort</span>
+                                    <span class="tag">Reminders</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="feature-item" data-feature="analytics" tabindex="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Analytics Dashboard</h3>
+                                <p>Detailed insights and productivity metrics with beautiful visualizations and export options.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Real-time</span>
+                                    <span class="tag">Export PDF</span>
+                                    <span class="tag">Trends</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="feature-item" data-feature="ai" tabindex="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-robot" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>AI Assistant</h3>
+                                <p>Personalized productivity recommendations and intelligent task suggestions powered by machine learning.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Smart Suggestions</span>
+                                    <span class="tag">Auto-Categorize</span>
+                                    <span class="tag">Learning</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="feature-item" data-feature="responsive" tabindex="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Cross-Platform</h3>
+                                <p>Perfect experience on all devices with offline sync and progressive web app capabilities.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">PWA Ready</span>
+                                    <span class="tag">Offline Mode</span>
+                                    <span class="tag">Sync</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="feature-item" data-feature="security" tabindex="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Enterprise Security</h3>
+                                <p>Bank-grade encryption, secure authentication, and comprehensive data protection.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">256-bit Encryption</span>
+                                    <span class="tag">2FA</span>
+                                    <span class="tag">GDPR</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="feature-item" data-feature="collaboration" tabindex="0">
+                            <div class="feature-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Team Collaboration</h3>
+                                <p>Share tasks, assign team members, track progress, and communicate in real-time.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Real-time Chat</span>
+                                    <span class="tag">Assign Tasks</span>
+                                    <span class="tag">Progress Tracking</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Stats Section -->
+                <section class="stats-section fade-in-delay-5" aria-labelledby="stats-title">
+                    <h2 id="stats-title" class="section-title">Proven Results</h2>
+                    <div class="stats-preview">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-tasks" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-number" data-target="2847">0</div>
+                            <div class="stat-label">Tasks Completed</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span>+23% this month</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-number" data-target="94">0</div>
+                            <div class="stat-label">% Productivity Boost</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span>Industry leading</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-number" data-target="168">0</div>
+                            <div class="stat-label">Hours Saved Weekly</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+                                <span>Per active user</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-number" data-target="1250000">0</div>
+                            <div class="stat-label">Active Users</div>
+                            <div class="stat-trend">
+                                <i class="fas fa-globe" aria-hidden="true"></i>
+                                <span>Worldwide</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testimonials Section -->
+                <section class="testimonials-section fade-in-delay-6" aria-labelledby="testimonials-title">
+                    <h2 id="testimonials-title" class="section-title">What Our Users Say</h2>
+                    <div class="testimonials-container">
+                        <div class="testimonial-item active">
+                            <div class="testimonial-content">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p>"ToDo Pro revolutionized how our team manages projects. The AI insights are game-changing!"</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Sarah Johnson</h4>
+                                        <span>Product Manager at TechCorp</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Background Animation -->
+            <div class="background-animation" aria-hidden="true">
+                <div class="floating-icon" style="--delay: 0s; --duration: 6s;">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="floating-icon" style="--delay: 2s; --duration: 8s;">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="floating-icon" style="--delay: 4s; --duration: 7s;">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="floating-icon" style="--delay: 1s; --duration: 9s;">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="floating-icon" style="--delay: 3s; --duration: 5s;">
+                    <i class="fas fa-trophy"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-brand">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>ToDo Pro</span>
+                </div>
+                <p>Built with ❤️ by SkillCraft Technology</p>
+                <div class="footer-links">
+                    <a href="#" aria-label="Privacy Policy">Privacy</a>
+                    <a href="#" aria-label="Terms of Service">Terms</a>
+                    <a href="#" aria-label="Contact Support">Support</a>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="Follow us on Twitter" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" aria-label="Follow us on LinkedIn" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" aria-label="Follow us on GitHub" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Professional ToDo Pro Landing Page JavaScript
+        class TodoProLanding {
+            constructor() {
+                this.isLoaded = false;
+                this.stats = [];
+                this.currentTestimonial = 0;
+                this.testimonials = [];
+                this.init();
+            }
+
+            async init() {
+                // Check for returning users
+                this.checkReturningUser();
+                
+                // Show loading screen
+                this.showLoadingScreen();
+                
+                // Initialize features
+                await this.initializeComponents();
+                
+                // Hide loading screen after everything is ready
+                setTimeout(() => {
+                    this.hideLoadingScreen();
+                    this.startAnimations();
+                }, 2000);
+            }
+
+            checkReturningUser() {
+                const lastVisited = localStorage.getItem('lastVisited');
+                const studentName = localStorage.getItem('studentName');
+                
+                if (lastVisited && studentName) {
+                    // Show welcome back message
+                    this.showWelcomeBack(studentName, lastVisited);
+                }
+            }
+
+            showWelcomeBack(name, lastPage) {
+                const heroTitle = document.getElementById('hero-title');
+                const heroSubtitle = document.querySelector('.hero-subtitle');
+                
+                if (heroTitle && heroSubtitle) {
+                    heroTitle.innerHTML = `Welcome Back, ${name}! 👋`;
+                    heroSubtitle.innerHTML = `Continue from where you left off in <strong>${this.getPageName(lastPage)}</strong>`;
+                    
+                    // Add quick return button
+                    const quickReturnBtn = document.createElement('a');
+                    quickReturnBtn.href = `${lastPage}.html`;
+                    quickReturnBtn.className = 'btn-quick-return';
+                    quickReturnBtn.innerHTML = `<i class="fas fa-arrow-right"></i> Return to ${this.getPageName(lastPage)}`;
+                    
+                    const actionsContainer = document.querySelector('.landing-actions');
+                    if (actionsContainer) {
+                        actionsContainer.insertBefore(quickReturnBtn, actionsContainer.firstChild);
+                    }
+                }
+            }
+
+            getPageName(page) {
+                const pageNames = {
+                    'dashboard': 'Dashboard',
+                    'tasks': 'Tasks',
+                    'analytics': 'Analytics',
+                    'ai-assistant': 'AI Assistant',
+                    'settings': 'Settings'
+                };
+                return pageNames[page] || 'Dashboard';
+            }
+
+            showLoadingScreen() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                const progressBar = document.querySelector('.loading-progress');
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress > 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                    }
+                    progressBar.style.width = progress + '%';
+                }, 100);
+            }
+
+            hideLoadingScreen() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    document.body.classList.add('loaded');
+                }, 500);
+            }
+
+            async initializeComponents() {
+                // Initialize dark mode
+                this.initDarkMode();
+                
+                // Setup event listeners
+                this.setupEventListeners();
+                
+                // Prepare stats animation
+                this.prepareStats();
+                
+                // Setup intersection observer for animations
+                this.setupIntersectionObserver();
+                
+                // Initialize keyboard navigation
+                this.initKeyboardNavigation();
+            }
+
+            initDarkMode() {
+                const themeToggle = document.getElementById('themeToggle');
+                const isDark = localStorage.getItem('todoApp_darkMode') === 'true';
+                
+                if (isDark) {
+                    document.body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-mode');
+                    const isDarkNow = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('todoApp_darkMode', isDarkNow);
+                    themeToggle.innerHTML = isDarkNow ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                    
+                    // Add toggle animation
+                    themeToggle.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        themeToggle.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+
+            setupEventListeners() {
+                // Feature card interactions
+                const featureItems = document.querySelectorAll('.feature-item');
+                featureItems.forEach((item, index) => {
+                    item.addEventListener('mouseenter', () => {
+                        item.style.transform = 'translateY(-10px) scale(1.02)';
+                        item.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                        item.style.transform = 'translateY(0) scale(1)';
+                        item.style.boxShadow = '';
+                    });
+
+                    item.addEventListener('click', () => {
+                        this.showFeatureModal(index);
+                    });
+                });
+
+                // Button ripple effects
+                const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-demo');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.createRippleEffect(e, btn);
+                    });
+                });
+
+                // Notification button
+                const notificationBtn = document.querySelector('.notifications-btn');
+                notificationBtn.addEventListener('click', () => {
+                    this.showNotifications();
+                });
+            }
+
+            createRippleEffect(event, button) {
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+                
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple-effect';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                button.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+
+            prepareStats() {
+                this.stats = document.querySelectorAll('.stat-number');
+            }
+
+            animateStats() {
+                this.stats.forEach(stat => {
+                    const target = parseInt(stat.dataset.target);
+                    let current = 0;
+                    const increment = target / 60;
+                    const suffix = target > 1000000 ? 'M+' : target > 1000 ? 'K+' : '';
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        
+                        let displayValue = Math.floor(current);
+                        if (target > 1000000) {
+                            displayValue = (current / 1000000).toFixed(1) + 'M';
+                        } else if (target > 1000) {
+                            displayValue = (current / 1000).toFixed(0) + 'K';
+                        }
+                        
+                        stat.textContent = displayValue;
+                    }, 50);
+                });
+            }
+
+            setupIntersectionObserver() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                            
+                            // Trigger stats animation when stats section comes into view
+                            if (entry.target.classList.contains('stats-section')) {
+                                this.animateStats();
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe all sections
+                document.querySelectorAll('section').forEach(section => {
+                    observer.observe(section);
+                });
+            }
+
+            initKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && e.target.classList.contains('feature-item')) {
+                        e.target.click();
+                    }
+                    
+                    if (e.key === 'Escape') {
+                        this.closeModals();
+                    }
+                });
+            }
+
+            showFeatureModal(index) {
+                const features = [
+                    {
+                        title: 'Smart Task Management',
+                        description: 'Advanced task organization with AI-powered categorization, smart deadlines, and intelligent prioritization.',
+                        benefits: ['Drag & Drop Interface', 'Auto-categorization', 'Smart Reminders', 'Priority Matrix']
+                    },
+                    {
+                        title: 'Analytics Dashboard',
+                        description: 'Comprehensive productivity insights with beautiful visualizations and detailed reporting.',
+                        benefits: ['Real-time Charts', 'Export Reports', 'Trend Analysis', 'Performance Metrics']
+                    },
+                    {
+                        title: 'AI Assistant',
+                        description: 'Intelligent productivity companion that learns from your habits and suggests optimizations.',
+                        benefits: ['Smart Suggestions', 'Pattern Recognition', 'Workflow Optimization', 'Predictive Analytics']
+                    }
+                ];
+
+                if (features[index]) {
+                    // Create and show modal (simplified for this example)
+                    console.log('Feature modal:', features[index]);
+                }
+            }
+
+            showNotifications() {
+                const notifications = [
+                    { type: 'success', message: 'Welcome to ToDo Pro!' },
+                    { type: 'info', message: 'New AI insights available' },
+                    { type: 'warning', message: '3 tasks due today' }
+                ];
+                
+                // Show notification panel (simplified)
+                console.log('Notifications:', notifications);
+            }
+
+            startAnimations() {
+                // Start the main animation sequence
+                setTimeout(() => this.animateStats(), 1000);
+            }
+
+            closeModals() {
+                // Close any open modals
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+        }
+
+        // Demo functionality
+        function startDemo() {
+            const demoSteps = [
+                'Creating a new task...',
+                'Setting priority and deadline...',
+                'Adding AI-powered suggestions...',
+                'Generating productivity insights...',
+                'Demo complete! Ready to start?'
+            ];
+            
+            let currentStep = 0;
+            const demoInterval = setInterval(() => {
+                console.log(demoSteps[currentStep]);
+                currentStep++;
+                
+                if (currentStep >= demoSteps.length) {
+                    clearInterval(demoInterval);
+                    if (confirm('🎉 Demo completed! Ready to launch your dashboard?')) {
+                        window.location.href = 'dashboard.html';
+                    }
+                }
+            }, 1500);
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            new TodoProLanding();
+        });
+
+        // Service Worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Enhanced performance monitoring
+        window.addEventListener('load', () => {
+            if ('performance' in window) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log('Page load time:', loadTime + 'ms');
+            }
+        });
+    </script>
+
+    <!-- Add professional landing page styles -->
+    <style>
+        /* Enhanced Landing Page Styles */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-spinner {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: spin 2s linear infinite;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: #FFD700;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .header-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        .brand-badge {
+            background: #FFD700;
+            color: #333;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .theme-toggle, .notifications-btn {
+            background: none;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .notifications-btn .notification-count {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-content {
+            padding-top: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .quick-stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .features-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .feature-content p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .feature-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,215,0,0.2);
+            color: #FFD700;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .stats-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .stat-trend {
+            color: #4CAF50;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .testimonials-section {
+            margin: 4rem 0;
+        }
+
+        .testimonial-item {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: white;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .btn-demo {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-quick-return {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+
+        .btn-quick-return:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .main-footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 40px 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features-preview {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-preview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Dark mode styles */
+        .dark-mode .main-header {
+            background: rgba(20,20,20,0.95);
+            color: white;
+        }
+
+        .dark-mode .nav-brand {
+            color: #FFD700;
+        }
+
+        .dark-mode .section-title {
+            color: #FFD700;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Web App - Professional Task Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .cover-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+            margin: 20px auto;
+        }
+
+        .logo-section {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .company-logo {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+
+        .task-section {
+            margin: 50px 0;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .task-header {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .task-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .task-description {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .student-info {
+            margin: 50px 0;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+
+        .student-name {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .student-details {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .name-input-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .name-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            color: white;
+            text-align: center;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .name-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .set-name-btn, .change-name-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .change-name-btn {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+
+        .set-name-btn:hover, .change-name-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .enter-button {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .background-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            font-size: 3rem;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            font-size: 2.5rem;
+            animation-delay: 1s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 5%;
+            font-size: 4rem;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 10%;
+            right: 10%;
+            font-size: 3.5rem;
+            animation-delay: 3s;
+        }
+
+        .floating-element:nth-child(5) {
+            top: 50%;
+            left: 3%;
+            font-size: 2rem;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(6) {
+            top: 60%;
+            right: 5%;
+            font-size: 2.8rem;
+            animation-delay: 5s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cover-container {
+                padding: 20px;
+                margin: 10px auto;
+            }
+
+            .task-header {
+                font-size: 2.5rem;
+            }
+
+            .task-title {
+                font-size: 1.8rem;
+            }
+
+            .task-description {
+                font-size: 1.1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .student-name {
+                font-size: 1.5rem;
+            }
+
+            .name-input {
+                width: 200px;
+                font-size: 1rem;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            body {
+                align-items: flex-start;
+                padding: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="floating-element"><i class="fas fa-clipboard-list"></i></div>
+        <div class="floating-element"><i class="fas fa-check-circle"></i></div>
+        <div class="floating-element"><i class="fas fa-tasks"></i></div>
+        <div class="floating-element"><i class="fas fa-calendar-alt"></i></div>
+        <div class="floating-element"><i class="fas fa-edit"></i></div>
+        <div class="floating-element"><i class="fas fa-clock"></i></div>
+    </div>
+
+    <div class="cover-container">
+        <div class="logo-section">
+            <div class="company-logo">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <div class="task-title">To-Do Web Application</div>
+            <div class="task-description">
+                A comprehensive task management application that enables users to add, organize, edit, and maintain their daily tasks with advanced features including date/time scheduling, filtering, and data persistence.
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-plus-circle"></i></div>
+                <div class="feature-title">Add Tasks</div>
+                <div class="feature-desc">Create and maintain tasks effortlessly</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-check-square"></i></div>
+                <div class="feature-title">Mark Complete</div>
+                <div class="feature-desc">Track progress with completion status</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-edit"></i></div>
+                <div class="feature-title">Edit Tasks</div>
+                <div class="feature-desc">Modify task details anytime</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-calendar-clock"></i></div>
+                <div class="feature-title">Date & Time</div>
+                <div class="feature-desc">Schedule tasks with precision</div>
+            </div>
+        </div>
+
+        <div class="student-info">
+            <div class="name-input-section" id="nameInputSection">
+                <input type="text" id="nameInput" placeholder="Enter your name" class="name-input">
+                <button onclick="setName()" class="set-name-btn">
+                    <i class="fas fa-check"></i> Set Name
+                </button>
+            </div>
+            <div class="student-display" id="studentDisplay" style="display: none;">
+                <div class="student-name" id="studentName">Student Name</div>
+                <div class="student-details">Web Developer Intern</div>
+                <div class="student-details">August 2025</div>
+                <button onclick="changeName()" class="change-name-btn">
+                    <i class="fas fa-edit"></i> Change Name
+                </button>
+            </div>
+        </div>
+
+        <a href="dashboard.html" class="enter-button">
+            <i class="fas fa-rocket"></i> Launch Application
+        </a>
+    </div>
+
+    <script>
+        // Dynamic name functionality
+        function setName() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            
+            if (name === '') {
+                alert('Please enter your name');
+                nameInput.focus();
+                return;
+            }
+            
+            // Store name in localStorage for persistence
+            localStorage.setItem('studentName', name);
+            
+            // Update display
+            document.getElementById('studentName').textContent = name;
+            document.getElementById('nameInputSection').style.display = 'none';
+            document.getElementById('studentDisplay').style.display = 'block';
+            
+            // Add celebration animation
+            const studentDisplay = document.getElementById('studentDisplay');
+            studentDisplay.style.animation = 'fadeInUp 0.5s ease-out';
+        }
+
+        function changeName() {
+            document.getElementById('nameInputSection').style.display = 'block';
+            document.getElementById('studentDisplay').style.display = 'none';
+            document.getElementById('nameInput').value = '';
+            document.getElementById('nameInput').focus();
+        }
+
+        // Check for stored name on page load
+        function checkStoredName() {
+            const storedName = localStorage.getItem('studentName');
+            if (storedName) {
+                document.getElementById('studentName').textContent = storedName;
+                document.getElementById('nameInputSection').style.display = 'none';
+                document.getElementById('studentDisplay').style.display = 'block';
+            }
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for stored name
+            checkStoredName();
+            
+            // Add enter key support for name input
+            document.getElementById('nameInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    setName();
+                }
+            });
+            
+            // Add click animation to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add keyboard navigation (modified to not conflict with name input)
+            document.addEventListener('keydown', function(e) {
+                if ((e.key === 'Enter' || e.key === ' ') && !document.getElementById('nameInput').matches(':focus')) {
+                    window.location.href = 'dashboard.html';
+                }
+            });
+
+            // Add mouse movement parallax effect
+            document.addEventListener('mousemove', function(e) {
+                const elements = document.querySelectorAll('.floating-element');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+
+                elements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed;
+                    const y = (mouseY - 0.5) * speed;
+                    element.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

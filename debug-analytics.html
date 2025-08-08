@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .chart-container { width: 400px; height: 400px; margin: 20px; display: inline-block; }
+        .debug-info { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .status { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Debug Analytics Charts</h1>
+    
+    <div class="debug-info">
+        <h3>Debug Information:</h3>
+        <div id="debugOutput"></div>
+    </div>
+
+    <div class="chart-container">
+        <h3>Task Distribution</h3>
+        <canvas id="taskDistributionChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h3>Weekly Progress</h3>
+        <canvas id="weeklyProgressChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h3>Category Breakdown</h3>
+        <canvas id="categoryChart"></canvas>
+    </div>
+
+    <script>
+        function debugLog(message) {
+            console.log(message);
+            const debugDiv = document.getElementById('debugOutput');
+            debugDiv.innerHTML += '<div>' + message + '</div>';
+        }
+
+        debugLog('🔍 Starting debug analytics...');
+
+        // Force create sample data
+        const sampleTasks = [
+            {
+                id: 'debug-1',
+                text: "Debug Task 1",
+                completed: true,
+                date: new Date().toISOString().split('T')[0],
+                category: "work",
+                priority: "high",
+                createdAt: new Date().toISOString()
+            },
+            {
+                id: 'debug-2',
+                text: "Debug Task 2",
+                completed: false,
+                date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                category: "personal",
+                priority: "medium",
+                createdAt: new Date().toISOString()
+            },
+            {
+                id: 'debug-3',
+                text: "Debug Task 3",
+                completed: true,
+                date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                category: "work",
+                priority: "low",
+                createdAt: new Date().toISOString()
+            },
+            {
+                id: 'debug-4',
+                text: "Debug Task 4 (Overdue)",
+                completed: false,
+                date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                category: "personal",
+                priority: "urgent",
+                createdAt: new Date().toISOString()
+            }
+        ];
+
+        debugLog('📊 Sample tasks created: ' + sampleTasks.length);
+
+        // Save to localStorage
+        localStorage.setItem('todoApp_tasks', JSON.stringify(sampleTasks));
+        debugLog('💾 Tasks saved to localStorage');
+
+        // Verify localStorage
+        const savedTasks = JSON.parse(localStorage.getItem('todoApp_tasks') || '[]');
+        debugLog('📋 Tasks loaded from localStorage: ' + savedTasks.length);
+
+        // Create charts
+        function createTaskDistributionChart() {
+            const ctx = document.getElementById('taskDistributionChart');
+            if (!ctx) {
+                debugLog('❌ taskDistributionChart canvas not found');
+                return;
+            }
+
+            const completed = savedTasks.filter(task => task.completed).length;
+            const today = new Date().toISOString().split('T')[0];
+            const overdue = savedTasks.filter(task => !task.completed && task.date < today).length;
+            const pending = savedTasks.filter(task => !task.completed && task.date >= today).length;
+
+            debugLog('📊 Chart data - Completed: ' + completed + ', Pending: ' + pending + ', Overdue: ' + overdue);
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'Pending', 'Overdue'],
+                    datasets: [{
+                        data: [completed, pending, overdue],
+                        backgroundColor: ['#28a745', '#ffc107', '#dc3545']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            debugLog('<span class="status">✅ Task Distribution Chart created successfully</span>');
+        }
+
+        function createWeeklyProgressChart() {
+            const ctx = document.getElementById('weeklyProgressChart');
+            if (!ctx) {
+                debugLog('❌ weeklyProgressChart canvas not found');
+                return;
+            }
+
+            const last7Days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            const completionData = [1, 0, 2, 1, 0, 1, 2]; // Sample data
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: last7Days,
+                    datasets: [{
+                        label: 'Tasks Completed',
+                        data: completionData,
+                        borderColor: '#007bff',
+                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            debugLog('<span class="status">✅ Weekly Progress Chart created successfully</span>');
+        }
+
+        function createCategoryChart() {
+            const ctx = document.getElementById('categoryChart');
+            if (!ctx) {
+                debugLog('❌ categoryChart canvas not found');
+                return;
+            }
+
+            const categories = {};
+            savedTasks.forEach(task => {
+                categories[task.category] = (categories[task.category] || 0) + 1;
+            });
+
+            const labels = Object.keys(categories);
+            const data = Object.values(categories);
+
+            debugLog('📊 Category data: ' + JSON.stringify(categories));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Tasks by Category',
+                        data: data,
+                        backgroundColor: ['#007bff', '#28a745']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            debugLog('<span class="status">✅ Category Chart created successfully</span>');
+        }
+
+        // Wait for Chart.js to load and create charts
+        window.addEventListener('load', () => {
+            debugLog('🚀 Page loaded, Chart.js available: ' + (typeof Chart !== 'undefined'));
+            
+            setTimeout(() => {
+                createTaskDistributionChart();
+                createWeeklyProgressChart();
+                createCategoryChart();
+                debugLog('<span class="status">🎉 All charts creation attempted</span>');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
